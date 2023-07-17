@@ -8,11 +8,11 @@ function ModeMenu(data) {
   const { state, setState } = useGlobalState();
 
   const oShippingMethods = [
-    { value: 5, text: t("simulation.shippingMethods.normal") },
-    { value: 4, text: t("simulation.shippingMethods.fast") },
-    { value: 3, text: t("simulation.shippingMethods.JIT") },
-    { value: 2, text: t("simulation.shippingMethods.cheapVendor") },
-    { value: 1, text: t("simulation.shippingMethods.specialDelivery") },
+    { value: 5, text: t("simulation.shippingMethods.normal"), color: "skyblue" },
+    { value: 4, text: t("simulation.shippingMethods.fast"), color: "darksalmon" },
+    { value: 3, text: t("simulation.shippingMethods.JIT"), color: "thistle" },
+    { value: 2, text: t("simulation.shippingMethods.cheapVendor"), color: "darkseagreen" },
+    { value: 1, text: t("simulation.shippingMethods.specialDelivery"), color: "lemonchiffon" },
   ];
 
   const [iMode, fSetMode] = useState(data.value);
@@ -28,16 +28,25 @@ function ModeMenu(data) {
     oNewState["orderlist"][iIndex].modus = iMode;
     setState(oNewState);
   };
+  const selectedMode = oShippingMethods.find((mode) => mode.value === iMode);
+  const selectedColor = selectedMode ? selectedMode.color : "inherit";
+  const selectStyle = {
+    width: "10rem",
+    backgroundColor: selectedColor,
+  };
+
   return (
     <FormControl>
       <Select
         value={iMode}
         label={t("simulation.shippingMethod")}
         onChange={fHandleChange}
-        sx={{ width: "10rem" }}
+        sx={selectStyle}
       >
         {oShippingMethods.map((oMenuItem) => {
-          return <MenuItem value={oMenuItem.value}>{oMenuItem.text}</MenuItem>;
+          return <MenuItem key={oMenuItem.value} value={oMenuItem.value}>
+            {oMenuItem.text}
+          </MenuItem>;
         })}
       </Select>
     </FormControl>

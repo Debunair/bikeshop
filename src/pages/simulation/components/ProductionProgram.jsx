@@ -297,7 +297,7 @@ function ProductionProgram(props) {
             backgroundColor: "white",
             color: "black",
             "&:hover": {
-              backgroundColor: "crimsonblue",
+              backgroundColor: "lightskyblue",
             },
           }}
         >
