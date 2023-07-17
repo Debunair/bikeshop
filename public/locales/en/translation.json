@@ -108,7 +108,8 @@
       "info3": "If there is a surplus of up to 800 minutes (a total of up to 3200 minutes), overtime is ordered. This is divided by the 5 working days of the week.",
       "info4": "If there is a demand of more than 3200 minutes, a second shift is ordered, and for demand exceeding 4800+800=5600 minutes, a third shift is ordered.",
       "info5": "Example: With a demand of 3000 minutes, it results in 1 shift and 600/5 = 120 minutes of overtime per day."
-    }
+    },
+    "partProduction": "Production Orders"
   },
   "toast": {
     "infoSplitItem": "A product to be produced has been split. You can find it at the end of the production list.",
@@ -118,6 +119,7 @@
     "errorFileUpload": "Something went wrong. Please try again with a different file or contact an administrator.",
     "generateXML": "Generating XML file of your planned values",
     "errorInvalidInputOvertimeExceed": "Please do not exceed the value of 241 minutes of overtime.",
-    "errorInvalidInputShiftOvertime": "No overtime can be ordered with three shifts."
+    "errorInvalidInputShiftOvertime": "No overtime can be ordered with three shifts.",
+    "errorNotDivisibleBy10": "The number has to be divided by 10."
   }
 }

@@ -242,13 +242,31 @@ function Simulation() {
       });
 
       oObj.partList["p1"] = oObj.partList["p1"].map((oElement) => {
-        return { ...oElement, reserveStock: oElement.stock };
+        return {
+          ...oElement,
+          reserveStock:
+            oElement.stock +
+            oElement.waitingListQuantity +
+            oElement.ordersInWorkQuantity,
+        };
       });
       oObj.partList["p2"] = oObj.partList["p2"].map((oElement) => {
-        return { ...oElement, reserveStock: oElement.stock };
+        return {
+          ...oElement,
+          reserveStock:
+            oElement.stock +
+            oElement.waitingListQuantity +
+            oElement.ordersInWorkQuantity,
+        };
       });
       oObj.partList["p3"] = oObj.partList["p3"].map((oElement) => {
-        return { ...oElement, reserveStock: oElement.stock };
+        return {
+          ...oElement,
+          reserveStock:
+            oElement.stock +
+            oElement.waitingListQuantity +
+            oElement.ordersInWorkQuantity,
+        };
       });
 
       fSetForecastLoaded(true);
@@ -701,12 +719,64 @@ function Simulation() {
       })
       .then((oResponse) => {
         const aNewQuantities = oResponse.data.map((oItem) => ({
-          id: oItem.id,
+          id: oItem.article,
           quantity: oItem.quantity,
         }));
-        aNewQuantities.forEach((oElement) => {
-          document.getElementById(`quantityPart${oElement.id}`).value =
-            oElement.quantity;
+        const aProductArray = ["p1", "p2", "p3"];
+        aProductArray.forEach((product) => {
+          aNewQuantities.forEach((oElement) => {
+            const oProduction = document.getElementById(
+              `quantityPart${product}${oElement.id}`
+            );
+            if (oProduction) {
+              oProduction.value = oElement.quantity;
+            }
+          });
+        });
+      });
+  };
+
+  const fHandleUpdateSafetyStock = (oEvent) => {
+    const oObj = {};
+    oObj.production = oPlanning.production;
+    const aProducts = [];
+    Object.entries(oPlanning.partList).forEach((aArray) => {
+      aArray[1].forEach((oElement) => {
+        if (
+          !aProducts.find(
+            (oProduct) => oProduct.productId === oElement.productId
+          )
+        ) {
+          aProducts.push({
+            productId: oElement.productId,
+            reserveStock: oElement.reserveStock,
+          });
+        }
+      });
+    });
+    oObj.products = aProducts;
+
+    axios
+      .post("http://localhost:8080/api/productionorders", oObj, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((oResponse) => {
+        const aNewQuantities = oResponse.data.map((oItem) => ({
+          id: oItem.article,
+          quantity: oItem.quantity,
+        }));
+        const aProductArray = ["p1", "p2", "p3"];
+        aProductArray.forEach((product) => {
+          aNewQuantities.forEach((oElement) => {
+            const oProduction = document.getElementById(
+              `quantityPart${product}${oElement.id}`
+            );
+            if (oProduction) {
+              oProduction.value = oElement.quantity;
+            }
+          });
         });
       });
   };
@@ -883,12 +953,12 @@ function Simulation() {
                   <Typography fontSize="20px" fontWeight="bold">
                     {t("simulation.productionPlanning")}
                   </Typography>
-                  <Button
+                  {/* <Button
                     variant="contained"
                     onClick={(oEvent) => fSendProductionPlan(oEvent)}
                   >
                     {t("simulation.planProduction")}
-                  </Button>
+                  </Button> */}
 
                   <TableContainer>
                     <Table>
@@ -929,6 +999,9 @@ function Simulation() {
                                         t-key={oProduct[0]}
                                         style={{ width: "8rem" }}
                                         defaultValue={oPeriod[oProduct[0]]}
+                                        onBlur={(oEvent) => {
+                                          fSendProductionPlan(oEvent);
+                                        }}
                                         onInput={(oEvent) => {
                                           const value = oEvent.target.value;
                                           if (value === "") {
@@ -1092,7 +1165,9 @@ function Simulation() {
                                     waitingListQuantity,
                                   }) => (
                                     <TableRow key={productId}>
-                                      <TableCell>{name}</TableCell>
+                                      <TableCell>
+                                        {productId}: {name}
+                                      </TableCell>
                                       <TableCell>{stock}</TableCell>
                                       <TableCell>
                                         {ordersInWorkQuantity}
@@ -1118,6 +1193,9 @@ function Simulation() {
                                               oEvent.target.value = 0;
                                             }
                                           }}
+                                          onBlur={(oEvent) =>
+                                            fHandleUpdateSafetyStock(oEvent)
+                                          }
                                           inputProps={{
                                             min: 0,
                                             onKeyDown: (event) => {
@@ -1138,7 +1216,7 @@ function Simulation() {
                                       </TableCell>
                                       <TableCell>
                                         <Input
-                                          id={`quantityPart${productId}`}
+                                          id={`quantityPart${propertyName}${productId}`}
                                           defaultValue={0}
                                           disabled
                                         ></Input>

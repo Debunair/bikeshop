@@ -108,7 +108,9 @@
       "info3": "Bei bis zu 800 Min mehr (insgesamt bis zu 3200 Minuten) werden Überminuten angeordnet. Diese werden durch die 5 Arbeitstage in der Woche geteilt.",
       "info4": "Bei über 3200 Min Bedarf wird eine zweite Schicht und bei über 4800+800=5600 Min eine dritte Schicht angeordnet.",
       "info5": "Beispiel: Bei 3000 Min Bedarf ergibt das 1 Schicht und 600/5 = 120 Überminuten pro Tag."
-    }
+    },
+    "partProduction": "Produktionsaufträge",
+    "amountPart": "Stück"
   },
   "toast": {
     "infoSplitItem": "Ein zu produzierendes Produkt wurde gesplittet. Sie finden es am Ende der Produktionsliste.",
@@ -118,6 +120,7 @@
     "errorFileUpload": "Etwas ist schief gegangen. Bitte versuchen Sie es mit einer anderen Datei oder wenden Sie sich an einen Administrator.",
     "generateXML": "XML Datei ihrer geplanten Werte wird generiert",
     "errorInvalidInputOvertimeExceed": "Bitte überschreiten Sie nicht den Wert von 241 Überminuten.",
-    "errorInvalidInputShiftOvertime": "Bei drei Schichten können keine Überminuten angeordnet werden."
+    "errorInvalidInputShiftOvertime": "Bei drei Schichten können keine Überminuten angeordnet werden.",
+    "errorNotDivisibleBy10": "Der eingegebene Wert muss durch 10 teilbar sein."
   }
 }
