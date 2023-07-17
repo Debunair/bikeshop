@@ -140,7 +140,7 @@ function Workinghours({ data, calculations, validate }) {
                     />
                   </FormControl>
                   {calculations && (
-                    <Typography variant="body2" alignContent="start">
+                    <Typography variant="body2" alignContent="start" marginTop="0.5rem">
                       Produktions- und Rüstzeiten:
                       {getCalculationExplanation(oElement.station)}
                     </Typography>
