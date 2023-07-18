@@ -517,6 +517,10 @@ function Simulation() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const fHandleBackInitial = () => {
+    fSetProductionPlanned(false);
+  };
+
   const fHandleSkip = () => {
     if (!fIsStepOptional(activeStep)) {
       // You probably want to guard against something like this,
@@ -1424,7 +1428,20 @@ function Simulation() {
                         color="inherit"
                         disabled={activeStep === 0 || !bGlobalValid}
                         onClick={fHandleBack}
-                        sx={{ mr: 1 }}
+                        sx={{
+                          mr: 1,
+                          visibility: activeStep !== 0 ? "visible" : "hidden",
+                        }}
+                      >
+                        {t("simulation.back")}
+                      </Button>
+                      <Button
+                        color="inherit"
+                        sx={{
+                          mr: 1,
+                          visibility: activeStep === 0 ? "visible" : "hidden",
+                        }}
+                        onClick={fHandleBackInitial}
                       >
                         {t("simulation.back")}
                       </Button>
