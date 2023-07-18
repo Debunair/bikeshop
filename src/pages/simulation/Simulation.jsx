@@ -379,7 +379,7 @@ function Simulation() {
       });
     });
 
-    Object.entries(oProduction["production"][0]).forEach((oArticle) => {
+    Object.entries(oProduction["distribution"][0]).forEach((oArticle) => {
       oObj.input.sellwish.item.push({
         "@article":
           oArticle[0] === "p1" ? "1" : oArticle[0] === "p2" ? "2" : "3",
@@ -573,8 +573,12 @@ function Simulation() {
       .then((oReponse) => {
         if (oReponse.status === 200) {
           const newState = { ...state };
-          newState["workingtimelist"] = oReponse.data;
-          newState["calculations"] = calculateValuesFromData(oReponse.data);
+          newState["workingtimelist"] = oReponse.data.sort(
+            (a, b) => a.station - b.station
+          );
+          newState["calculations"] = calculateValuesFromData(
+            oReponse.data.sort((a, b) => a.station - b.station)
+          );
           setState(newState);
           let newSkipped = skipped;
           if (fIsStepSkipped(activeStep)) {
