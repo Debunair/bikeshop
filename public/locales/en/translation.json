@@ -79,7 +79,7 @@
     "tooltipDeliveryProgram": "Here you can view the calculated order program. Please enter only numbers and do not leave the fields empty.",
     "tooltipWorkhours": "Here you can view the calculated multiple shifts and overtime. Please enter only numbers and do not leave the fields empty.",
     "tooltipOverview": "Here you can view the complete planning for the upcoming period. Press 'Finish' to generate a file with the planning.",
-    "tooltipDirectSelling": "Here you can plan your direct sales. Please enter only numbers as values.",
+    "tooltipDirectSelling": "Here you can plan your direct sales. Please enter only numbers as values. Given amounts are not added to distribution or production plans.",
     "productionPlanningAmount": "Production Quantity",
     "directSellingQuantity": "Quantity",
     "directSellingPrice": "Price in €",
