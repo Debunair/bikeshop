@@ -1206,7 +1206,7 @@ function Simulation() {
                                   }) => (
                                     <TableRow key={productId}>
                                       <TableCell>
-                                        {productId}: {name}
+                                        {productId}: {t("simulation."+name)}
                                       </TableCell>
                                       <TableCell>{stock}</TableCell>
                                       <TableCell>
