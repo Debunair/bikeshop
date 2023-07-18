@@ -70,7 +70,7 @@ function DeliveryProgram(props) {
               <Box display="flex" alignItems="center">
                 <strong>{t("simulation.component")}:</strong>
                 <Box marginLeft="0.5rem">
-                  {oElement.article}: {oElement.name}
+                  {oElement.article}: {t("simulation."+oElement.name)}
                 </Box>
               </Box>
               <Box display="flex" alignItems="center">
@@ -150,8 +150,8 @@ function DeliveryProgram(props) {
                   }}
                 >
                   {expandedOrderIndex === index
-                    ? "Informationen ausblenden"
-                    : "Informationen anzeigen"}
+                    ? t("simulation.infosausblenden")
+                    : t("simulation.infosanzeigen")}
                 </Button>
               </Box>
             </Box>

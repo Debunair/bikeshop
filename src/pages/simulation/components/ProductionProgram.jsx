@@ -302,8 +302,8 @@ function ProductionProgram(props) {
           }}
         >
           {allInformationOpen
-            ? "Informationen ausblenden"
-            : "Informationen anzeigen"}
+            ? t("simulation.infosausblenden")
+            : t("simulation.infosanzeigen")}
         </Button>
       </Box>
     </>

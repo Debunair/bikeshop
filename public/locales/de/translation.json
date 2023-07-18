@@ -133,6 +133,8 @@
     "workingTimeListOverview": "Übersicht: Arbeitszeiten",
     "inputInvalid": "Bitte geben Sie eine Zahl ein und lassen Sie die Felder nicht leer.",
     "selectSplit": "Wählen Sie aus, ob Produktionsaufträge gesplitted werden sollen.",
+    "infosanzeigen": "Informationen anzeigen",
+    "infosausblenden": "Informationen ausblenden",
     "tooltipProductionPlanning": "Planen Sie hier ihre Produktion für die nächste Periode.\nDie vorgegebenen Werte entstehen abhängig der gegebenen Prognosen.\nBitte geben Sie nur Zahlen ein, die durch 10 teilbar sind und lassen die Felder nicht leer.",
     "tooltipProductionProgram": "Hier können Sie das berechnete Produktionsprogramm einsehen. Bitte geben Sie nur Zahlen ein, die durch 10 teilbar sind und lassen die Felder nicht leer.",
     "tooltipDeliveryProgram": "Hier können Sie das berechnete Bestellprogramm einsehen. Bitte geben Sie nur Zahlen ein, die durch 10 teilbar sind und lassen die Felder nicht leer.",
