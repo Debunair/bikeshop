@@ -7,11 +7,9 @@ import "./i18n";
 import { GlobalStateProvider } from "./components/GlobalStateProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <GlobalStateProvider>
-        <App />
-      </GlobalStateProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <GlobalStateProvider>
+      <App />
+    </GlobalStateProvider>
+  </BrowserRouter>
 );

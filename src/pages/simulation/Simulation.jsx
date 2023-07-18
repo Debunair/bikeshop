@@ -269,6 +269,10 @@ function Simulation() {
         };
       });
 
+      oObj.partList["p1"].sort((a, b) => a.productId - b.productId);
+      oObj.partList["p2"].sort((a, b) => a.productId - b.productId);
+      oObj.partList["p3"].sort((a, b) => a.productId - b.productId);
+
       fSetForecastLoaded(true);
       fSetPlanning(oObj);
       setItems([...oObj["inventory"]]);
