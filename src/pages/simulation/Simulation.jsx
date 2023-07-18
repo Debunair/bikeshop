@@ -81,6 +81,28 @@ function Simulation() {
   useEffect(() => {
     axios.get("http://localhost:8080/api/forecasts").then((oReponse) => {
       const oObj = {
+        prognosis: [
+          {
+            p1: 0,
+            p2: 0,
+            p3: 0,
+          },
+          {
+            p1: 0,
+            p2: 0,
+            p3: 0,
+          },
+          {
+            p1: 0,
+            p2: 0,
+            p3: 0,
+          },
+          {
+            p1: 0,
+            p2: 0,
+            p3: 0,
+          },
+        ],
         forecast: [
           {
             p1: 0,
@@ -272,6 +294,8 @@ function Simulation() {
       oObj.partList["p1"].sort((a, b) => a.productId - b.productId);
       oObj.partList["p2"].sort((a, b) => a.productId - b.productId);
       oObj.partList["p3"].sort((a, b) => a.productId - b.productId);
+
+      oObj.prognosis = [...oObj.forecast];
 
       fSetForecastLoaded(true);
       fSetPlanning(oObj);
@@ -817,7 +841,7 @@ function Simulation() {
                       <TableHead>
                         <TableRow>
                           <TableCell />
-                          {oPlanning.distribution.map((oPeriod, index) => {
+                          {oPlanning.prognosis.map((oPeriod, index) => {
                             return (
                               <TableCell align="center">
                                 <InputLabel>
@@ -831,27 +855,25 @@ function Simulation() {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {Object.entries(oPlanning.forecast[0]).map(
+                        {Object.entries(oPlanning.prognosis[0]).map(
                           (oProduct) => {
                             return (
                               <TableRow>
                                 <TableCell align="center">
                                   {t(`fileupload.product${oProduct[0]}`)}
                                 </TableCell>
-                                {oPlanning.distribution.map(
-                                  (oPeriod, index) => {
-                                    return (
-                                      <TableCell>
-                                        <Input
-                                          type="number"
-                                          style={{ width: "8rem" }}
-                                          value={oPeriod[oProduct[0]]}
-                                          disabled
-                                        />
-                                      </TableCell>
-                                    );
-                                  }
-                                )}
+                                {oPlanning.prognosis.map((oPeriod, index) => {
+                                  return (
+                                    <TableCell>
+                                      <Input
+                                        type="number"
+                                        style={{ width: "8rem" }}
+                                        value={oPeriod[oProduct[0]]}
+                                        disabled
+                                      />
+                                    </TableCell>
+                                  );
+                                })}
                               </TableRow>
                             );
                           }

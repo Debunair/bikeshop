@@ -20,7 +20,7 @@ function Workinghours({ data, calculations, validate }) {
   const fSetGlobalValid = validate;
   const { t, i18n } = useTranslation();
   const { state, setState } = useGlobalState();
-  const [iMaxNumber, setMaxNumber] = useState(241);
+  const [iMaxNumber, setMaxNumber] = useState(240);
 
   const allowedKeys = [
     "ArrowLeft",
@@ -140,7 +140,11 @@ function Workinghours({ data, calculations, validate }) {
                     />
                   </FormControl>
                   {calculations && (
-                    <Typography variant="body2" alignContent="start" marginTop="0.5rem">
+                    <Typography
+                      variant="body2"
+                      alignContent="start"
+                      marginTop="0.5rem"
+                    >
                       Produktions- und Rüstzeiten:
                       {getCalculationExplanation(oElement.station)}
                     </Typography>
@@ -175,8 +179,8 @@ function Workinghours({ data, calculations, validate }) {
                             t("toast.errorInvalidInputShiftOvertime")
                           );
                         }
-                        if (oElement.shift !== 3 && oEvent.target.value > 241) {
-                          oEvent.target.value = 241;
+                        if (oElement.shift !== 3 && oEvent.target.value > 240) {
+                          oEvent.target.value = 240;
                           toast.error(
                             t("toast.errorInvalidInputOvertimeExceed")
                           );
